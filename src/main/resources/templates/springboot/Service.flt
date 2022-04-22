@@ -1,0 +1,80 @@
+package ${servicePackage};
+
+import ${servicePackage}.Service;
+import ${modelPackage}.${table.name};
+import ${voPackage}.${table.name}VO;
+import tk.mybatis.mapper.entity.Condition;
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
+
+/*
+ * @author ${author}
+ * @email: ${email}
+ * @date: ${dateTime}
+ * @Description ${table.srcName} ${table.comment} 业务接口
+ * @version ${version}
+ */
+public interface ${table.name}Service extends Service<${table.name}> {
+
+    /**
+     * 根据日志编号查询
+     * @param id 编号
+     * @return  信息
+     */
+    ${table.name}VO selectById(Serializable id);
+
+    /**
+     * 根据条件查询记录
+     * @param pageNum 第几页
+     * @param pageSize 页大小
+     * @param condition 条件
+     * @return 结果集
+     */
+    List<${table.name}VO> selectList(Integer pageNum, Integer pageSize, Condition condition);
+
+    /**
+     * 根据编号集合查询记录
+     * @param ids 编号集合
+     * @return 结果集
+     */
+    List<${table.name}VO> selectByIds(Collection<Serializable> ids);
+
+    /**
+     * 插入记录
+     * @param ${table.name?uncap_first}VO 实体
+     */
+    void insert(${table.name}VO ${table.name?uncap_first}VO);
+
+    /**
+     * 普良插入
+     * @param ${table.name?uncap_first}VOCollection 实体集合
+     */
+    void insertList(Collection<${table.name}VO> ${table.name?uncap_first}VOCollection);
+
+    /**
+     * 更新数据
+     * @param ${table.name?uncap_first}VO); 信息
+     */
+    void update(${table.name}VO ${table.name?uncap_first}VO);
+
+    /**
+     * 批量删除
+     * @param ids 编号集合
+     */
+    void deleteByIds(Collection<Serializable> ids);
+    
+    /**
+     * 转换方法，将VO转换为DTO
+     * @param ${table.name?uncap_first}VO VO
+     * @return DTO
+     */
+    ${table.name} convert(${table.name}VO ${table.name?uncap_first}VO);
+
+    /**
+     * 转换方法，将DTO转换为VO
+     * @param ${table.name?uncap_first} DTO
+     * @return VO
+     */
+    ${table.name}VO convert(${table.name} ${table.name?uncap_first});
+}

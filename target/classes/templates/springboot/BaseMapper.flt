@@ -1,0 +1,16 @@
+package ${mapperPackage};
+
+import tk.mybatis.mapper.common.BaseMapper;
+import tk.mybatis.mapper.common.ConditionMapper;
+import tk.mybatis.mapper.common.IdsMapper;
+import tk.mybatis.mapper.common.special.InsertListMapper;
+
+/**
+ * @author Rhythm-2019
+ * @version 1.0
+ * @Date 2020/12/1 18:04
+ * @Email rhythm_2019@163.com
+ * @Description 通用Mapper
+ */
+public interface Mapper<T> extends BaseMapper<T>, ConditionMapper<T>, InsertListMapper<T>, IdsMapper<T> {
+}

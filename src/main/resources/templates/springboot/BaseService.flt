@@ -1,0 +1,102 @@
+package ${servicePackage};
+
+import org.apache.ibatis.exceptions.TooManyResultsException;
+import tk.mybatis.mapper.entity.Condition;
+
+import java.io.Serializable;
+import java.util.List;
+
+/*
+ * @author ${author}
+ * @email: ${email}
+ * @date: ${dateTime}
+ * @Description 通用Service
+ * @version ${version}
+ */
+public interface Service<T> {
+    /**
+     * @param model 实体
+     * @Description: 持久化
+     * @return 影响行数
+     */
+    Integer insert(T model);
+
+    /**
+     * @param id 编号
+     * @Description: 通过主鍵刪除
+     * @return Integer
+     */
+    Integer deleteById(Serializable id);
+
+    /**
+     * @param ids 编号字符串
+     * @Description: 批量刪除 eg：ids -> “1,2,3,4”
+     * @return Integer
+     */
+    Integer deleteByIds(String ids);
+
+    /**
+     * @param model 实体
+     * @Description: 更新
+     * @return Integer
+     */
+    Integer update(T model);
+
+    /**
+     * @param id 编号
+     * @Description: 通过ID查找
+     * @return T
+     */
+    T selectByPrimaryKey(Serializable id);
+
+    /**
+     * @param fieldName 字段名
+     * @param value 值
+     * @exception TooManyResultsException 元素太多
+     * @Description: 通过Model中某个成员变量名称（非数据表中column的名称）查找,value需符合unique约束
+     * @return 结果
+     */
+    T selectBy(String fieldName, Object value) throws TooManyResultsException;
+
+    /**
+     * @param fieldName javabean定义的属性名，不是数据库里的属性名
+     * @param value 指
+     * @Description: 通过Model中某个成员变量名称（非数据表中column的名称）查找
+     * @return 结果集合
+     */
+    List<T> selectListBy(String fieldName, Object value);
+
+    /**
+     * @param ids 编号字符串
+     * @Description: 通过多个ID查找//eg：ids -> “1,2,3,4”
+     * @return List<T>
+     */
+    List<T> selectListByIds(String ids);
+
+    /**
+     * @param condition 条件
+     * @Description: 根据条件查找
+     * @return 结果集
+     */
+    List<T> selectByCondition(Condition condition);
+
+    /**
+     * @Description: 获取所有
+     * @return List<T>
+     */
+    List<T> selectAll();
+
+    /**
+     * @param record 根据条件实体查询
+     * @return 结果集
+     * @Description: 根据实体中的属性值进行查询，查询条件使用等号
+     */
+    List<T> select(T record);
+
+    /**
+     * @param record 根据条件实体查询
+     * @return T
+     * @Description: 根据实体中的属性值进行查询，查询条件使用等号
+     */
+    T selectOne(T record);
+}

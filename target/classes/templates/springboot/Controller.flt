@@ -1,0 +1,66 @@
+package ${controllerPackage};
+
+import ${servicePackage}.${table.name}Service;
+import ${commonPackage}.CommonResponse;
+import ${commonPackage}.CommonResult;
+import ${voPackage}.${table.name}VO;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.*;
+import javax.annotation.Resource;
+
+/*
+ * @author ${author}
+ * @email: ${email}
+ * @date: ${dateTime}
+ * @Description ${table.srcName} ${table.comment} 接口
+ * @version ${version}
+*/
+@Api(value = "${table.comment}", tags = "${table.comment}接口")
+@RestController
+@RequestMapping("/${table.name}")
+public class ${table.name}Controller {
+
+    @Resource
+    private ${table.name}Service ${table.name?uncap_first}Service;
+
+    @ApiOperation("详细")
+    @ApiImplicitParam(value = "编号", name = "id", required = true, dataType = "long", paramType = "path")
+    @GetMapping("/info/{id}")
+    public CommonResult getByOd(@PathVariable("id") Long id) {
+        return CommonResponse.success(this.${table.name?uncap_first}Service.selectById(id));
+    }
+
+    @ApiOperation("分页")
+    @ApiImplicitParams({
+            @ApiImplicitParam(value = "第几页", name = "pageNum", required = true, dataType = "date", paramType = "query"),
+            @ApiImplicitParam(value = "页大小", name = "pageSize", required = true, dataType = "date", paramType = "query")
+    })
+    @GetMapping("/info/{pageNum}/{pageSize}")
+    public CommonResult getByPage(@PathVariable("pageNum") Integer pageNum, @PathVariable("pageSize") Integer pageSize) {
+        return CommonResponse.success(this.${table.name?uncap_first}Service.selectList(pageNum, pageSize, null));
+    }
+
+    @ApiOperation("删除")
+    @ApiImplicitParam(value = "编号", name = "id", required = true, dataType = "long", paramType = "path")
+    @DeleteMapping("/info/{id}")
+    public CommonResult delById(@PathVariable("id") Long id) {
+        return CommonResponse.success(this.${table.name?uncap_first}Service.deleteById(id));
+    }
+
+    @ApiOperation("修改")
+    @PutMapping("/info")
+    public CommonResult update(@RequestBody ${table.name}VO ${table.name?uncap_first}VO) {
+        this.${table.name?uncap_first}Service.update(${table.name?uncap_first}VO);
+        return CommonResponse.success();
+    }
+
+    @ApiOperation("添加")
+    @PostMapping("/info")
+    public CommonResult insert(@RequestBody ${table.name}VO ${table.name?uncap_first}VO) {
+        this.${table.name?uncap_first}Service.insert(${table.name?uncap_first}VO);
+        return CommonResponse.success();
+    }
+}
