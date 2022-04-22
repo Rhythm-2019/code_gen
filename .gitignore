@@ -2,3 +2,4 @@
 logs
 *.iml
 *.mvn
+target

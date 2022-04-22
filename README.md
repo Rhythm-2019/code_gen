@@ -5,6 +5,8 @@
 
 代码生成的原理可以简单理解为字符串替换，将模板内容 ```“Hello ${userName}” ```以及 ```data {"userName": "world"} ```传入模板引擎，即可获得``` "Hello world"``` 字   符串。
 
+  ![freemarker](https://freemarker.apache.org/images/overview.png)
+  
 利用模板引擎，我们可以通过预先编写好的模板附加用户数据生成邮件内容、配置文件、代码、HTML等。
 
 模板引擎一般配套自己的占位语法、函数等，例如 Golang 中 template，利用他可以生成一些配置文件和代码 
@@ -36,7 +38,7 @@ func main() {
 }
 ```
 
-Python 中的 Jinja 常常被用于自动化部署中间件时的配置文件生成，
+Python 中的 Jinja2 常常被用于自动化部署中间件时的配置文件生成，
 
 ```go
 [mysqld]
@@ -53,7 +55,7 @@ Java 中著名的模板引擎
 
   Java 编写的模板引擎，可以处理各种文本文件，使用 ```${}``` 表达模板内容，文档详细
 
-  ![freemarker](https://freemarker.apache.org/images/overview.png)
+
 
 综上，我选择  Freemarker 更适合代码生成的模板引擎，下图是代码中几个核心类的依赖关系
 
