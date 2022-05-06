@@ -59,7 +59,7 @@ Java 中著名的模板引擎
 
 综上，我选择  Freemarker 更适合代码生成的模板引擎，下图是代码中几个核心类的依赖关系
 
-![schema](schema.png)
+![schema](/schema.png)
 
 ## Quick Start
 #### 基于已有的模板生成代码
